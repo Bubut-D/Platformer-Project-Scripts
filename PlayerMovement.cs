@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject attackLine;
     [SerializeField] private GameObject attackCollider;
     [SerializeField] public GameObject dashLine;
+    [SerializeField] private PauseMenu pauseMenu;
+
 
     [HideInInspector] public float horizontalMove = 0f;
     private float verticalMove = 0f;
@@ -62,6 +64,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (pauseMenu.paused) return;
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            pauseMenu.PauseGame();
+        }
+
         if (canMove)
         {
             check = !isAttacking && !isClimbing && !isStomping;

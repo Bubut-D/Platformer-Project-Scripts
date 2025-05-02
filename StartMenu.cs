@@ -7,6 +7,10 @@ public class StartMenu : MonoBehaviour
 {
     [SerializeField] private Animator transition;
 
+    private void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
     public void StartGame()
     {
         transition.SetTrigger("Start");
@@ -15,5 +19,14 @@ public class StartMenu : MonoBehaviour
     private void LoadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void StartTestLevel()
+    {
+        transition.SetTrigger("Start");
+        Invoke("LoadTestScene", 1.5f);
+    }
+    private void LoadTestScene()
+    {
+        SceneManager.LoadScene(4);
     }
 }
